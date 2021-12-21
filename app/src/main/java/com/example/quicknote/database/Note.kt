@@ -18,7 +18,7 @@ data class Note(
 
     @ColumnInfo(name = "author_name")
     var author: String,
-
+/*
     @ColumnInfo(name = "last_modified")
-    var lastModified: Date
+    var lastModified: Date*/
 )

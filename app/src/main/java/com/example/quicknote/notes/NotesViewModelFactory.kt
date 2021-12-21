@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.quicknote.note
+package com.example.quicknote.notes
 
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.quicknote.database.NoteDatabaseDao
@@ -26,13 +27,14 @@ import com.example.quicknote.database.NoteDatabaseDao
  *
  * Provides the SleepDatabaseDao and context to the ViewModel.
  */
-class NoteDetailViewModelFactory(
-        private val sleepNightKey: Long,
-        private val dataSource: NoteDatabaseDao) : ViewModelProvider.Factory {
+class NotesViewModelFactory(
+        private val dataSource: NoteDatabaseDao,
+        private val application: Application
+) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(NoteDetailViewModel::class.java)) {
-            return NoteDetailViewModel(sleepNightKey, dataSource) as T
+        if (modelClass.isAssignableFrom(NotesViewModel::class.java)) {
+            return NotesViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

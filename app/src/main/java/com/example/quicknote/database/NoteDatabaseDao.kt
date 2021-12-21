@@ -19,7 +19,6 @@ package com.example.quicknote.database
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
@@ -41,9 +40,6 @@ interface NoteDatabaseDao {
 
     @Query("SELECT * FROM notes_table ORDER BY id DESC")
     fun getAllNotes(): LiveData<List<Note>>
-
-    @Query("SELECT * FROM notes_table ORDER BY id DESC LIMIT 1")
-    suspend fun getMyNotes(): Note?
 
     @Query("SELECT * from notes_table WHERE id = :key")
     fun getNoteWithId(key: Long): LiveData<Note>
