@@ -12,9 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.quicknote.R
 import com.example.quicknote.database.NoteDatabase
 import com.example.quicknote.databinding.FragmentAddNoteBinding
-import com.example.quicknote.notes.NotesFragmentDirections
-import com.example.quicknote.notes.NotesViewModel
-import com.example.quicknote.notes.NotesViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -49,6 +46,7 @@ class AddNoteFragment : Fragment() {
 
         notesViewModel.navigateToNotes.observe(viewLifecycleOwner, Observer {
             if (it == true) {
+                notesViewModel.saveNote(binding.titleEdit.text.toString(), binding.editAuthor.text.toString(), binding.editMessage.text.toString())
                 this.findNavController().navigate(
                     AddNoteFragmentDirections.actionAddNoteFragmentToNotesFragment()
                 )

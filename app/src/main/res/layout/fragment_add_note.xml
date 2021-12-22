@@ -65,8 +65,10 @@ xmlns:tools="http://schemas.android.com/tools">
         android:fontFamily="@font/roboto"
         android:text="@string/add_note"
         android:onClick="@{() -> addNoteViewModel.onAddNoteClick()}"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -38,11 +38,26 @@ tools:context=".notes.NotesFragment">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8sp"
+        android:layout_marginStart="30sp"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:onClick="@{() -> notesViewModel.onAddNoteClick()}"
         android:text="@string/add_note"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/clear_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8sp"
+        android:layout_marginEnd="30dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:fontFamily="@font/roboto"
+        android:text="@string/clear"
+        android:onClick="@{() -> notesViewModel.onClear()}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

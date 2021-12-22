@@ -4,7 +4,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.quicknote.database.Note
 import com.example.quicknote.database.NoteDatabaseDao
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NotesViewModel(
     dataSource: NoteDatabaseDao,
@@ -15,19 +17,28 @@ class NotesViewModel(
 
     val notes = database.getAllNotes()
 
-    private suspend fun insert(note: Note) {
-        database.insert(note)
-    }
-
     private val _navigateToAddNote = MutableLiveData<Boolean?>()
 
     val navigateToAddNote: LiveData<Boolean?>
         get() = _navigateToAddNote
 
-    private val _navigateToNoteDetail = MutableLiveData<Boolean?>()
+    private val _navigateToNoteDetail = MutableLiveData<Long>()
 
-    val navigateToNoteDetail: LiveData<Boolean?>
+    val navigateToNoteDetail: LiveData<Long>
         get() = _navigateToNoteDetail
+
+    suspend fun clear() {
+        withContext(Dispatchers.IO){
+            database.clear()
+        }
+    }
+
+    fun onClear() {
+        viewModelScope.launch {
+            clear()
+        }
+    }
+
 
     fun onAddNoteClick(){
         _navigateToAddNote.value = true
@@ -37,10 +48,12 @@ class NotesViewModel(
         _navigateToAddNote.value = null
     }
 
-    init {
-        viewModelScope.launch {
-            val note = Note(0, "elso", "uzenet", "jancsosz")
-            insert(note)
-        }
+
+    fun onNoteClicked(id: Long) {
+        _navigateToNoteDetail.value = id
+    }
+
+    fun onNoteDetailNavigated() {
+        _navigateToNoteDetail.value = null
     }
 }

@@ -8,17 +8,14 @@ import java.util.*
 @Entity(tableName = "notes_table")
 data class Note(
     @PrimaryKey(autoGenerate = true)
-    var id: Long,
+    var id: Long = 0L,
 
     @ColumnInfo(name = "title")
-    var title: String,
+    var title: String = "",
 
     @ColumnInfo(name = "message")
-    var message: String,
+    var message: String = "",
 
     @ColumnInfo(name = "author_name")
-    var author: String,
-/*
-    @ColumnInfo(name = "last_modified")
-    var lastModified: Date*/
+    var author: String = ""
 )

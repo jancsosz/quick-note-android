@@ -18,6 +18,7 @@ package com.example.quicknote.notedetail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.quicknote.database.Note
 import com.example.quicknote.database.NoteDatabaseDao
@@ -33,20 +34,32 @@ class NoteDetailViewModel(
 
     val database = dataSource
 
-    private suspend fun insert(note: Note) {
-        database.insert(note)
-    }
-
     private val note: LiveData<Note>
 
-    fun getNight() = note
+    fun getNote() = note
 
-    private val _navigateToNotes = MutableLiveData<Note>()
+    val titleString = Transformations.map(getNote()) { note ->
+        "Title: " + note.title
+    }
 
-    val navigateToNotes: LiveData<Note>
+    val authorString = Transformations.map(getNote()) { note ->
+        "Author: " + note.author
+    }
+
+    private val _navigateToNotes = MutableLiveData<Boolean?>()
+
+    val navigateToNotes: LiveData<Boolean?>
         get() = _navigateToNotes
 
     init {
         note = database.getNoteWithId(noteKey)
+    }
+
+    fun doneNavigating() {
+        _navigateToNotes.value = null
+    }
+
+    fun onClose() {
+        _navigateToNotes.value = true
     }
 }

@@ -53,12 +53,25 @@ class NotesFragment : Fragment() {
             }
         })
 
-        val adapter = NoteAdapter()
+        val adapter = NoteAdapter(NoteListener { noteId ->
+            //Toast.makeText(context, "${nightId}", Toast.LENGTH_LONG).show()
+            notesViewModel.onNoteClicked(noteId)
+        })
         binding.noteList.adapter = adapter
 
         notesViewModel.notes.observe(viewLifecycleOwner, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
+            }
+        })
+
+        notesViewModel.navigateToNoteDetail.observe(viewLifecycleOwner, Observer { note ->
+            note?.let {
+
+                this.findNavController().navigate(
+                    NotesFragmentDirections
+                        .actionNotesFragmentToNoteDetailFragment(note))
+                notesViewModel.onNoteDetailNavigated()
             }
         })
 

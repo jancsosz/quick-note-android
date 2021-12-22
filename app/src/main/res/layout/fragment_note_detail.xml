@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textSize="20dp"
-            android:text="@string/hello_blank_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:titleString="@{noteDetailViewModel.note}"
             />
 
         <TextView
@@ -33,10 +33,10 @@
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:layout_marginTop="20dp"
-            android:text="@string/hello_blank_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
+            app:authorString="@{noteDetailViewModel.note}"
             />
 
         <ScrollView
@@ -52,7 +52,8 @@
                 android:id="@+id/bio_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/hello_blank_fragment" />
+                android:text="@string/hello_blank_fragment"
+                app:messageString="@{noteDetailViewModel.note}"/>
         </ScrollView>
 
         <Button
@@ -63,7 +64,7 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:fontFamily="@font/roboto"
             android:text="@string/close"
-            android:onClick="createNote"
+            android:onClick="@{() -> noteDetailViewModel.onClose()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
