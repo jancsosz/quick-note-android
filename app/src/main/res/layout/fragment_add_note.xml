@@ -61,6 +61,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8sp"
         style="@style/Widget.AppCompat.Button.Colored"
         android:fontFamily="@font/roboto"
         android:text="@string/add_note"
@@ -68,6 +69,20 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!--<Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8sp"
+        android:layout_marginStart="30sp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:fontFamily="@font/roboto"
+        android:text="@string/add_note"
+        android:onClick="@{() -> addNoteViewModel.onAddNoteClick()}"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

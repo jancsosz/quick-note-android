@@ -7,20 +7,23 @@ import com.example.quicknote.database.Note
 @BindingAdapter("titleString")
 fun TextView.setTitleString(item: Note?) {
     item?.let {
-        text = item.title
+        val titleText = "Title: " + item.title
+        text = titleText
     }
 }
 
 @BindingAdapter("authorString")
 fun TextView.setAuthorString(item: Note?) {
     item?.let {
-        text = item.author
+        val authorText = "Author: " + item.author
+        text = authorText
     }
 }
 
 @BindingAdapter("messageString")
 fun TextView.setMessageString(item: Note?) {
     item?.let {
-        text = item.message
+        val messageText = "Message: " + item.message
+        text = messageText
     }
 }
